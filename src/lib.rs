@@ -7,63 +7,24 @@ extern crate std;
 #[cfg(test)]
 use std::prelude::*;
 
-use core::fmt::Write;
-use heapless::String;
-use log::*;
+use log;
+#[allow(unused_imports)] // Bad warning, this implements panic_handler
+#[cfg(not(test))]
+use logz::fatal::panic;
+pub use logz::LOGZ_LOGGER;
 
-mod bindings;
-use bindings::*;
-mod fatal;
-
-pub static LOGGER: ZLog = ZLog;
-
-pub struct ZLog;
-
-fn zlog_init(lvl: LevelFilter) {
-    log::set_logger(&LOGGER).unwrap();
-    log::set_max_level(lvl);
-    log::info!("Initialized zlog")
-}
+// #[cfg(not(test))] #[panic_handler]
+// pub fn panic(_panic: &core::panic::PanicInfo<'_>) -> ! {
+//     todo!()
+// }
 
 #[no_mangle]
-pub extern "C" fn zlog_init_error() {
-    zlog_init(LevelFilter::Error);
-}
-#[no_mangle]
-pub extern "C" fn zlog_init_warn() {
-    zlog_init(LevelFilter::Warn);
-}
-#[no_mangle]
-pub extern "C" fn zlog_init_info() {
-    zlog_init(LevelFilter::Info);
-}
-#[no_mangle]
-pub extern "C" fn zlog_init_trace() {
-    zlog_init(LevelFilter::Trace);
-}
-
-impl Log for ZLog {
-    #[inline(always)]
-    fn enabled(&self, _metadata: &Metadata) -> bool {
-        true
-    }
-
-    #[inline(always)]
-    fn log(&self, record: &Record) {
-        let log_impl = match record.level() {
-            Level::Error => log_err,
-            Level::Warn => log_wrn,
-            _ => log_inf,
-        };
-        let mut c_str = String::<256>::new();
-        write!(c_str, "{}: {}\0", record.target(), record.args()).unwrap();
-        unsafe {
-            log_impl(c_str.as_bytes().as_ptr() as *const u8 as *const cty::c_char);
-        }
-    }
-
-    #[inline(always)]
-    fn flush(&self) {}
+pub extern "C" fn example_foo() {
+    log::trace!("Foo");
+    log::debug!("Bar");
+    log::info!("Fizz");
+    log::warn!("Buzz");
+    log::error!("Fizzle");
 }
 
 #[cfg(test)]

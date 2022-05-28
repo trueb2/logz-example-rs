@@ -1,0 +1,3 @@
+[submodule "lib/logz"]
+	path = lib/logz
+	url = https://github.com/trueb2/logz

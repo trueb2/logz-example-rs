@@ -1,5 +1,5 @@
 [package]
-name = "zlog-rs"
+name = "logz-example-rs"
 version = "0.1.0"
 edition = "2021"
 
@@ -17,9 +17,8 @@ codegen-units = 1
 opt-level = 3
 
 [dependencies]
-cty = "0.2.2"
-heapless = "0.7.13"
 log = "0.4.17"
+logz = { git = "https://github.com/trueb2/logz" }
 
 
 [build-dependencies]
