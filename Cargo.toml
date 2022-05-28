@@ -18,7 +18,7 @@ opt-level = 3
 
 [dependencies]
 log = "0.4.17"
-logz = { git = "https://github.com/trueb2/logz" }
+logz = "0.1.0"
 
 
 [build-dependencies]
