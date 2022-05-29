@@ -18,7 +18,7 @@ opt-level = 3
 
 [dependencies]
 log = "0.4.17"
-logz = "0.1.1"
+logz = "0.1.2"
 
 
 [build-dependencies]

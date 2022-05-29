@@ -12,4 +12,6 @@
 
 void example_foo(void);
 
+void example_foo(void);
+
 #endif /* LOGZ_EXAMPLE_RS_INCLUDE_GENERATED_LIB_LOGZ_EXAMPLE_RS_H */
