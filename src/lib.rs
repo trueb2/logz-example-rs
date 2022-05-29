@@ -29,11 +29,11 @@ static mut ACC: u32 = 0;
 #[target_feature(enable = "dsp")]
 #[no_mangle]
 pub unsafe extern "C" fn example_foo() {
-    // log::trace!("Foo");
-    // log::debug!("Bar");
-    // log::info!("Fizz");
-    // log::warn!("Buzz");
-    // log::error!("Fizzle");
+    log::trace!("Foo");
+    log::debug!("Bar");
+    log::info!("Fizz");
+    log::warn!("Buzz");
+    log::error!("Fizzle");
     let a: u32 = ACC;
     let b: u32 = 0x01020304;
     let c: u32;
