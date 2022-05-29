@@ -17,11 +17,6 @@ use log;
 #[cfg(not(test))]
 use logz::fatal::panic;
 
-// #[cfg(not(test))] #[panic_handler]
-// pub fn panic(_panic: &core::panic::PanicInfo<'_>) -> ! {
-//     todo!()
-// }
-
 #[cfg(target_abi = "eabihf")]
 static mut ACC: u32 = 0;
 
